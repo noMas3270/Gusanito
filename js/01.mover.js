@@ -1,37 +1,40 @@
-window.onload = function () {
+window.onload = function () { // por que carajos tengo que meter todo esto acá adentro!?!?!
 
 	var fondo = new Area("fondo", 500, 500, "green", 0, 0);
 	fondo.agregar();
 
-	// var gusano = [new Gusano("cabeza", 22, 25, "red", 225, 225)];
-	// gusano[0].agregar();
+	var gusano = new Gusano("cabeza", "grey");
+	gusano.agregar();
 
 	var pelota = new Pelota("pelota", "red");
 	pelota.agregar();
-	pelota.mover();
+	pelota.moverRandom();
 
-};
+	var intervalo;
 
-document.onkeydown = function (e) {
-	var intervalo = setInterval(function(){
-		mover(e.keyCode);
-	},100)
-};
+	document.onkeydown = function (e) {
+		clearInt();
+		intervalo = setInterval(function(){
+			mover(e.keyCode);
+		},100)
+	};
 
-function mover(key){
-	switch(key){
-		case 38: gusano.moverX(-25); break; // Mover arriba
-		case 40: gusano.moverX(+25); break; // Mover abajo
-		case 37: gusano.moverY(-25); break; // Mover izquierda
-		case 39: gusano.moverY(-25); break; // Mover derecha
+	function clearInt(){
+		if (intervalo) {
+			clearInterval(intervalo)
+		};
+	};
+
+	function mover(key){
+		switch(key){
+		case 38: gusano.moverArriba(); break; // Mover arriba
+		case 40: gusano.moverAbajo(); break; // Mover abajo
+		case 37: gusano.moverIzq(); break; // Mover izquierda
+		case 39: gusano.moverDer(); break; // Mover derecha
 		default: clearInt();
+		};
 	};
-};
 
-function clearInt(){
-	if (intervalo) {
-	clearInterval(intervalo)
-	};
 };
 
 /*

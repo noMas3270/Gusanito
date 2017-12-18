@@ -1,5 +1,3 @@
-
-
 class Area {
 	constructor(nombre, alto, ancho, fondo, ejeX, ejeY) {
 		this.nombre = nombre;
@@ -20,6 +18,93 @@ class Area {
 		newDiv.style.top = this.ejeX + "px"
 		newDiv.style.left = this.ejeY + "px"
 		document.body.appendChild(newDiv);
+	}
+
+}
+
+class Pelota {
+	constructor(nombre, color) {
+		this.nombre = nombre;
+		this.ancho;
+		this.alto;
+		this.color = color;
+		this.ejeX;
+		this.ejeY;
+	}
+
+	agregar() {
+
+		var areaPelota = new Area(this.nombre, 25, 25, this.color, 0, 0);
+		areaPelota.agregar();
+	
+	}
+
+	moverRandom() {
+
+		var areaPelota = document.getElementById(this.nombre);
+		console.log("areaPelota", areaPelota);
+		var numero;
+
+		numero = Math.round(Math.random() * (19 - 1) + 1);
+		numero *= 25;
+
+		areaPelota.style.top = numero + "px";
+
+		numero = Math.round(Math.random() * (19 - 1) + 1);
+		numero *= 25;
+		areaPelota.style.left = numero + "px";
+
+	}
+
+}
+
+class Gusano {
+	constructor(nombre, color) {
+		this.nombre = nombre;
+		this.ancho;
+		this.alto;
+		this.color = color;
+		this.ejeX;
+		this.ejeY;
+	}
+
+	agregar() {
+
+		var areaGusano = new Area(this.nombre, 25, 25, this.color, 245, 245);
+		areaGusano.agregar();
+	
+	}
+
+	moverArriba() {
+		var moverDiv = document.getElementById(this.nombre);
+		moverDiv.style.top -= 25 + "px";
+	}
+
+	moverAbajo() {
+		var moverDiv = document.getElementById(this.nombre);
+		moverDiv.style.top += 25 + "px";
+	}
+
+	moverIzq() {
+		var moverDiv = document.getElementById(this.nombre);
+		moverDiv.style.left -= 25 + "px";
+	}
+
+	moverDer() {
+		var moverDiv = document.getElementById(this.nombre);
+		moverDiv.style.left += 25 + "px";
+	}
+
+}
+
+/* Creando la clase de esta manera defino un formato de objeto
+function Area(nombre, alto, ancho, fondo, ejeX, ejeY) {
+	this.nombre = nombre;
+	this.ancho = ancho;
+	this.alto = alto;
+	this.fondo = fondo;
+	this.ejeX = ejeX;
+	this.ejeY = ejeY;	
 	}
 
 	moverXY(ejeX, ejeY) {
@@ -46,98 +131,5 @@ class Area {
 	moverY(ejeY) {
 		var moverDiv = document.getElementById(this.nombre);
 		moverDiv.style.left = ejeY + "px";
-	}
-
-}
-
-class Pelota {
-	constructor(nombre, color) {
-		this.nombre = nombre;
-		this.ancho;
-		this.alto;
-		this.color = color;
-		this.ejeX;
-		this.ejeY;
-	}
-
-	agregar() {
-
-		var areaPelota = new Area(this.nombre, 25, 25, this.color, 0, 0);
-		areaPelota.agregar();
-
-		var numero;
-
-		numero = Math.round(Math.random() * (19 - 1) + 1);
-		numero *= 25;
-
-		areaPelota.moverX(numero);	
-
-		numero = Math.round(Math.random() * (19 - 1) + 1);
-		numero *= 25;
-
-		areaPelota.moverY(numero);	
-
-	}
-
-	mover() {
-
-		var areaPelota = document.getElementById(this.nombre);
-		console.log("areaPelota", areaPelota);
-		var numero;
-
-		numero = Math.round(Math.random() * (19 - 1) + 1);
-		numero *= 25;
-
-		areaPelota.moverX(numero);	
-
-		numero = Math.round(Math.random() * (19 - 1) + 1);
-		numero *= 25;
-
-		areaPelota.moverY(numero);	
-
-	}
-
-}
-
-class Gusano {
-	constructor(ejeX, ejeY) {
-		this.ejeX = ejeX;
-		this.ejeY = ejeY;
-	}
-
-	moverArriba() {
-		var moverDiv = document.getElementById(this.nombre);
-		moverDiv.style.top = ejeX + "px";
-		moverDiv.style.left = ejeX + "px";
-	}
-
-	moverAbajo() {
-		var moverDiv = document.getElementById(this.nombre);
-		moverDiv.style.top = ejeX + "px";
-		moverDiv.style.left = ejeX + "px";
-	}
-
-	moverIzq() {
-		var moverDiv = document.getElementById(this.nombre);
-		moverDiv.style.top = ejeX + "px";
-		moverDiv.style.left = ejeX + "px";
-	}
-
-	moverDer() {
-		var moverDiv = document.getElementById(this.nombre);
-		moverDiv.style.top = ejeX + "px";
-		moverDiv.style.left = ejeX + "px";
-	}
-
-}
-
-/* Creando la clase de esta manera defino un formato de objeto
-function Area(nombre, alto, ancho, fondo, ejeX, ejeY) {
-	this.nombre = nombre;
-	this.ancho = ancho;
-	this.alto = alto;
-	this.fondo = fondo;
-	this.ejeX = ejeX;
-	this.ejeY = ejeY;	
 	}
 */
