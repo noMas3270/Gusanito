@@ -1,3 +1,40 @@
+window.onload = function () {
+
+	var fondo = new Area("fondo", 500, 500, "green", 0, 0);
+	fondo.agregar();
+
+	// var gusano = [new Gusano("cabeza", 22, 25, "red", 225, 225)];
+	// gusano[0].agregar();
+
+	var pelota = new Pelota("pelota", "red");
+	pelota.agregar();
+	pelota.mover();
+
+};
+
+document.onkeydown = function (e) {
+	var intervalo = setInterval(function(){
+		mover(e.keyCode);
+	},100)
+};
+
+function mover(key){
+	switch(key){
+		case 38: gusano.moverX(-25); break; // Mover arriba
+		case 40: gusano.moverX(+25); break; // Mover abajo
+		case 37: gusano.moverY(-25); break; // Mover izquierda
+		case 39: gusano.moverY(-25); break; // Mover derecha
+		default: clearInt();
+	};
+};
+
+function clearInt(){
+	if (intervalo) {
+	clearInterval(intervalo)
+	};
+};
+
+/*
 // var recuadro = document.querySelector("#recuadro");
 // var pelota = document.querySelector("#pelota");
 
@@ -21,27 +58,6 @@ document.onkeydown = function (e) {
 		controlarPelota();
 		// controlarCola();
 	},caca)
-}
-
-function mover(key){
-	oldRecuadroTop = recuadroTop;
-	oldRecuadroLeft = recuadroLeft;
-	switch(key){
-		case 38: 
-			arriba();
-		break;
-		case 40:
-			abajo();
-		break;
-		case 37:
-			izquierda();
-		break;
-		case 39:
-			derecha();
-		break;
-
-		default: clearInt();
-		}	
 };
 
 function arriba(){
@@ -158,3 +174,4 @@ function clearInt(){
 	if (intervalo) {
 	clearInterval(intervalo)
 };};
+*/
