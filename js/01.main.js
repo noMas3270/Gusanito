@@ -3,12 +3,12 @@ window.onload = function () { // por que carajos tengo que meter todo esto acá 
 	var fondo = new Area("fondo", 500, 500, "green", 0, 0);
 	fondo.agregar();
 
-	var gusano = new Gusano("cabeza", "grey");
-	gusano.agregar();
-
-	var pelota = new Pelota("pelota", "red");
+	var pelota = new Pelota("pelota", 25, 25, "red", 0, 0);
 	pelota.agregar();
 	pelota.moverRandom();
+
+	var gusano = new Gusano("cabeza", 25, 25, "grey", 225, 225);
+	gusano.agregar();
 
 	var intervalo;
 
@@ -16,6 +16,8 @@ window.onload = function () { // por que carajos tengo que meter todo esto acá 
 		clearInt();
 		intervalo = setInterval(function(){
 			mover(e.keyCode);
+			controlMapa();
+			controlPelota();
 		},100)
 	};
 
@@ -33,6 +35,21 @@ window.onload = function () { // por que carajos tengo que meter todo esto acá 
 		case 39: gusano.moverDer(); break; // Mover derecha
 		default: clearInt();
 		};
+	};
+	
+	function controlMapa() {
+
+		if (parseInt(gusano.ejeX) == parseInt(fondo.ejeX) ||
+			parseInt(gusano.ejeY) == parseInt(fondo.ejeY) ||
+			parseInt(gusano.ejeX) + parseInt(gusano.alto) == parseInt(fondo.ejeX) + parseInt(fondo.alto) ||
+			parseInt(gusano.ejeY) + parseInt(gusano.ancho) == parseInt(fondo.ejeY) + parseInt(fondo.ancho)) {
+			clearInt();
+			alert("Perdiste capo, vofi...")		
+		}
+	};
+
+	function controlPelota() {
+
 	};
 
 };
