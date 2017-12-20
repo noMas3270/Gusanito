@@ -1,4 +1,5 @@
 window.onload = function () { // por que carajos tengo que meter todo esto acá adentro!?!?!
+	var velocidad=100;
 
 	var fondo = new Area("fondo", 500, 500, "green", 0, 0);
 	fondo.agregar();
@@ -7,7 +8,7 @@ window.onload = function () { // por que carajos tengo que meter todo esto acá 
 	pelota.agregar();
 	pelota.moverRandom();
 
-	var gusano = new Gusano("cabeza", 25, 25, "grey", 225, 225);
+	var gusano = new Gusano("gusano", 25, 25, "grey", 225, 225);
 	gusano.agregar();
 
 	var intervalo;
@@ -18,7 +19,7 @@ window.onload = function () { // por que carajos tengo que meter todo esto acá 
 			mover(e.keyCode);
 			controlMapa();
 			controlPelota();
-		},100)
+		},velocidad)
 	};
 
 	function clearInt(){
@@ -38,18 +39,23 @@ window.onload = function () { // por que carajos tengo que meter todo esto acá 
 	};
 	
 	function controlMapa() {
-
-		if (parseInt(gusano.ejeX) == parseInt(fondo.ejeX) ||
-			parseInt(gusano.ejeY) == parseInt(fondo.ejeY) ||
-			parseInt(gusano.ejeX) + parseInt(gusano.alto) == parseInt(fondo.ejeX) + parseInt(fondo.alto) ||
-			parseInt(gusano.ejeY) + parseInt(gusano.ancho) == parseInt(fondo.ejeY) + parseInt(fondo.ancho)) {
+		if (parseInt(gusano.ejeX) < parseInt(fondo.ejeX) ||
+			parseInt(gusano.ejeY) < parseInt(fondo.ejeY) ||
+			parseInt(gusano.ejeX) + parseInt(gusano.alto) > parseInt(fondo.ejeX) + parseInt(fondo.alto) ||
+			parseInt(gusano.ejeY) + parseInt(gusano.ancho) > parseInt(fondo.ejeY) + parseInt(fondo.ancho)) {
 			clearInt();
+			gusano.reiniciar(225, 225);
 			alert("Perdiste capo, vofi...")		
-		}
+		};
 	};
 
 	function controlPelota() {
-
+		if (parseInt(gusano.ejeX) == parseInt(pelota.ejeX) && 
+			parseInt(gusano.ejeY) == parseInt(pelota.ejeY)) {	
+			pelota.moverRandom();
+			gusano.agregarCola();
+			velocidad--;
+		 }
 	};
 
 };

@@ -27,9 +27,21 @@ class Area {
 		return div.style.left;
 	};
 	cambiarPos(ejeX, ejeY) {
-		let Div = document.getElementById(this.nombre);
+		let div = document.getElementById(this.nombre);
 		div.style.top = ejeX + "px";
 		div.style.left = ejeY + "px";
+		this.ejeX = ejeX;
+		this.ejeY = ejeY;
+	};
+	cambiarEjeX(ejeX) {
+		let div = document.getElementById(this.nombre);
+		div.style.top = ejeX + "px";
+		this.ejeX = ejeX;
+	};
+	cambiarEjeY(ejeY) {
+		let div = document.getElementById(this.nombre);
+		div.style.left = ejeY + "px";
+		this.ejeY = ejeY;
 	};
 };
 
@@ -67,6 +79,13 @@ class Gusano extends Area {
 		let ejeX = parseInt(super.obtenerEjeX());
 		let ejeY = parseInt(super.obtenerEjeY()) + 25;
 		super.cambiarPos(ejeX, ejeY);
+	};
+	reiniciar(ejeX, ejeY) {
+		super.cambiarPos(ejeX, ejeY);
+	};
+	agregarCola() {
+		super.agregar();
+		super.cambiarNombre()
 	};
 };
 
